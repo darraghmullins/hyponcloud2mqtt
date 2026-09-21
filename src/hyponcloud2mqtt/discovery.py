@@ -1,5 +1,8 @@
+```python
 """Home Assistant Discovery module."""
+
 from __future__ import annotations
+
 import logging
 from typing import TYPE_CHECKING, Any, TypedDict
 
@@ -12,6 +15,7 @@ logger = logging.getLogger(__name__)
 
 class SensorAttribute(TypedDict, total=False):
     """Type definition for sensor attributes."""
+
     name: str
     unit: str
     icon: str
@@ -22,137 +26,309 @@ class SensorAttribute(TypedDict, total=False):
 
 
 SENSORS: dict[str, SensorAttribute] = {
+
+    # =========================================================
+    # EXISTING GENERATION / REVENUE SENSORS
+    # =========================================================
+
     "today_revenue": {
         "name": "Today Revenue",
         "icon": "mdi:currency-usd",
         "device_class": "monetary",
         "state_class": "total_increasing",
-        "display_precision": 2
+        "display_precision": 2,
     },
+
     "month_revenue": {
         "name": "Month Revenue",
         "icon": "mdi:currency-usd",
         "device_class": "monetary",
         "state_class": "total_increasing",
-        "display_precision": 2
+        "display_precision": 2,
     },
+
     "total_revenue": {
         "name": "Total Revenue",
         "icon": "mdi:currency-usd",
         "device_class": "monetary",
         "state_class": "total_increasing",
-        "display_precision": 2
+        "display_precision": 2,
     },
+
     "total_generation": {
         "name": "Total Energy",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total_increasing",
-        "display_precision": 2
+        "display_precision": 2,
     },
+
     "month_generation": {
         "name": "Month Energy",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total_increasing",
-        "display_precision": 2
+        "display_precision": 2,
     },
+
     "today_generation": {
         "name": "Today Energy",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total_increasing",
-        "display_precision": 2
+        "display_precision": 2,
     },
+
     "year_generation": {
         "name": "Year Energy",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total_increasing",
-        "display_precision": 2
+        "display_precision": 2,
     },
+
     "tree": {
         "name": "Equivalent Trees Planted",
         "icon": "mdi:tree",
         "state_class": "total_increasing",
-        "display_precision": 2
+        "display_precision": 2,
     },
+
     "co2": {
         "name": "CO2 Emissions Reduction",
         "unit": "kg",
         "icon": "mdi:molecule-co2",
         "state_class": "total_increasing",
-        "display_precision": 2
+        "display_precision": 2,
     },
+
     "diesel": {
         "name": "Equivalent Diesel Saved",
         "unit": "L",
         "icon": "mdi:barrel",
         "state_class": "total_increasing",
-        "display_precision": 2
+        "display_precision": 2,
     },
+
+    # =========================================================
+    # EXISTING / CURRENT REAL-TIME SENSORS
+    # =========================================================
+
     "percent": {
         "name": "Production Capacity Factor",
         "unit": "%",
         "icon": "mdi:percent",
         "state_class": "measurement",
-        "display_precision": 2
+        "display_precision": 2,
     },
+
     "w_cha": {
-        "name": "Charging Power",
+        "name": "Battery Power",
         "unit": "W",
         "device_class": "power",
         "state_class": "measurement",
-        "display_precision": 0
+        "display_precision": 0,
     },
+
     "power_pv": {
         "name": "Solar Power Generation",
         "unit": "W",
         "device_class": "power",
         "state_class": "measurement",
-        "display_precision": 0
+        "display_precision": 0,
     },
+
+    # =========================================================
+    # NEW REAL-TIME POWER / BATTERY SENSORS
+    # =========================================================
+
+    "power_load": {
+        "name": "Load Power",
+        "unit": "W",
+        "device_class": "power",
+        "state_class": "measurement",
+        "display_precision": 0,
+    },
+
+    "meter_power": {
+        "name": "Grid Power",
+        "unit": "W",
+        "device_class": "power",
+        "state_class": "measurement",
+        "display_precision": 0,
+    },
+
+    "soc": {
+        "name": "Battery State of Charge",
+        "unit": "%",
+        "device_class": "battery",
+        "state_class": "measurement",
+        "display_precision": 0,
+    },
+
+    # =========================================================
+    # MONITOR ENERGY COUNTERS
+    # =========================================================
+
+    "e_today": {
+        "name": "Solar Energy Today",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    "e_month": {
+        "name": "Solar Energy This Month",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    "e_year": {
+        "name": "Solar Energy This Year",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    "e_total": {
+        "name": "Solar Energy Lifetime",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total_increasing",
+        "display_precision": 2,
+    },
+
+    # =========================================================
+    # ENERGY2 - DAILY ENERGY FLOW
+    # =========================================================
+
+    "pvkwh": {
+        "name": "PV Energy Today",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    "load": {
+        "name": "Energy Consumption Today",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    "load_from_pv": {
+        "name": "Load from PV Today",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    "load_from_bat": {
+        "name": "Load from Battery Today",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    "load_from_grid": {
+        "name": "Load from Grid Today",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    "pv_to_load": {
+        "name": "PV to Load Today",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    "pv_to_bat": {
+        "name": "PV to Battery Today",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    "pv_to_grid": {
+        "name": "PV to Grid Today",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    "kwhac": {
+        "name": "AC Energy Today",
+        "unit": "kWh",
+        "device_class": "energy",
+        "state_class": "total",
+        "display_precision": 2,
+    },
+
+    # =========================================================
+    # DIAGNOSTIC SENSORS
+    # =========================================================
+
     "gateway_online": {
         "name": "Gateway Online",
         "icon": "mdi:cloud-check",
         "entity_category": "diagnostic",
         "state_class": "measurement",
     },
+
     "gateway_offline": {
         "name": "Gateway Offline",
         "icon": "mdi:cloud-off-outline",
         "entity_category": "diagnostic",
-        "state_class": "measurement"
+        "state_class": "measurement",
     },
+
     "inverter_online": {
         "name": "Inverter Online",
         "icon": "mdi:solar-power-variant",
         "entity_category": "diagnostic",
-        "state_class": "measurement"
+        "state_class": "measurement",
     },
+
     "inverter_normal": {
         "name": "Inverter Normal",
         "icon": "mdi:check-circle-outline",
         "entity_category": "diagnostic",
-        "state_class": "measurement"
+        "state_class": "measurement",
     },
+
     "inverter_offline": {
         "name": "Inverter Offline",
         "icon": "mdi:solar-power-variant-outline",
         "entity_category": "diagnostic",
-        "state_class": "measurement"
+        "state_class": "measurement",
     },
+
     "inverter_fault": {
         "name": "Inverter Fault",
         "icon": "mdi:alert-circle-outline",
         "entity_category": "diagnostic",
-        "state_class": "measurement"
+        "state_class": "measurement",
     },
+
     "inverter_wait": {
         "name": "Inverter Wait",
         "icon": "mdi:clock-outline",
         "entity_category": "diagnostic",
-        "state_class": "measurement"
+        "state_class": "measurement",
     },
 }
 
@@ -160,17 +336,23 @@ SENSORS: dict[str, SensorAttribute] = {
 def publish_discovery_message(
     client: MqttClient,
     config: Config,
-    system_id: str
+    system_id: str,
 ) -> None:
-    """Publishes Home Assistant discovery messages for a given system ID."""
+    """Publish Home Assistant discovery messages for a given system ID."""
+
     if not config.ha_discovery_enabled:
         return
 
     discovery_prefix = config.ha_discovery_prefix
     base_topic = config.mqtt_topic
-    # Data topic where values will be published: <base_topic>/<system_id>
-    # Note: main.py currently publishes to f"{config.mqtt_topic}/{system_id}"
+
+    # Data topic where values are published:
+    # <base_topic>/<system_id>
+    #
+    # main.py publishes the merged MQTT data to:
+    # f"{config.mqtt_topic}/{system_id}"
     state_topic = f"{base_topic}/{system_id}"
+
     availability_topic = config.mqtt_availability_topic
 
     device_info = {
@@ -181,15 +363,23 @@ def publish_discovery_message(
     }
 
     for key, attributes in SENSORS.items():
+
         sensor_name = attributes["name"]
-        # Unique ID for the sensor entity in HA
+
+        # Unique ID for the Home Assistant entity.
         unique_id = f"hypon_{system_id}_{key}"
-        # Discovery topic: <prefix>/sensor/<node_id>/<object_id>/config
-        # We use system_id as node_id component
-        discovery_topic = f"{discovery_prefix}/sensor/hypon_{system_id}/{unique_id}/config"
+
+        # Discovery topic:
+        #
+        # <prefix>/sensor/<node_id>/<object_id>/config
+        discovery_topic = (
+            f"{discovery_prefix}/sensor/"
+            f"hypon_{system_id}/"
+            f"{unique_id}/config"
+        )
 
         payload: dict[str, Any] = {
-            "name": f"{sensor_name}",
+            "name": sensor_name,
             "unique_id": unique_id,
             "state_topic": state_topic,
             "value_template": f"{{{{ value_json.{key} }}}}",
@@ -201,17 +391,41 @@ def publish_discovery_message(
 
         if "unit" in attributes:
             payload["unit_of_measurement"] = attributes["unit"]
+
         if "device_class" in attributes:
             payload["device_class"] = attributes["device_class"]
+
         if "state_class" in attributes:
             payload["state_class"] = attributes["state_class"]
+
         if "icon" in attributes:
             payload["icon"] = attributes["icon"]
+
         if "entity_category" in attributes:
             payload["entity_category"] = attributes["entity_category"]
-        if "display_precision" in attributes:
-            payload["suggested_display_precision"] = attributes["display_precision"]
 
-        # Publish with retain=True so HA finds it on restart
-        client.publish(payload, topic=discovery_topic, retain=True)
-        logger.debug(f"Published discovery for {key} to {discovery_topic}")
+        if "display_precision" in attributes:
+            payload["suggested_display_precision"] = (
+                attributes["display_precision"]
+            )
+
+        # Retain Discovery configuration so Home Assistant
+        # can restore the entities after restarting.
+        client.publish(
+            payload,
+            topic=discovery_topic,
+            retain=True,
+        )
+
+        logger.debug(
+            "Published discovery for %s to %s",
+            key,
+            discovery_topic,
+        )
+```
+
+This preserves the original Discovery mechanism exactly: each sensor gets a `value_template` of `{{ value_json.<field> }}` and uses the existing `<mqtt_topic>/<system_id>` state topic.
+
+**One deliberate choice:** I have not added `balance` as a Home Assistant sensor. It will still be present in the MQTT JSON from `data_merger.py`, which lets us investigate what Hypon means by `balance` without creating a potentially misleading HA energy entity.
+
+Also, I changed the new daily/monthly/yearly energy counters to `state_class: "total"` rather than `total_increasing`, because they reset at the relevant period boundary. `e_total` remains `total_increasing`.
