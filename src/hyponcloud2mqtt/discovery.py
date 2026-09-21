@@ -1,4 +1,3 @@
-```python
 """Home Assistant Discovery module."""
 
 from __future__ import annotations
@@ -422,10 +421,3 @@ def publish_discovery_message(
             key,
             discovery_topic,
         )
-```
-
-This preserves the original Discovery mechanism exactly: each sensor gets a `value_template` of `{{ value_json.<field> }}` and uses the existing `<mqtt_topic>/<system_id>` state topic.
-
-**One deliberate choice:** I have not added `balance` as a Home Assistant sensor. It will still be present in the MQTT JSON from `data_merger.py`, which lets us investigate what Hypon means by `balance` without creating a potentially misleading HA energy entity.
-
-Also, I changed the new daily/monthly/yearly energy counters to `state_class: "total"` rather than `total_increasing`, because they reset at the relevant period boundary. `e_total` remains `total_increasing`.
