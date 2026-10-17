@@ -191,9 +191,7 @@ class DataFetcher:
         return (
             f"{self.base_url}/v2/plant/"
             f"{self.system_id}/energy2"
-            f"?day={now.day:02d}"
-            f"&month={now.month:02d}"
-            f"&type=day"
+            f"?type=year"
             f"&year={now.year}"
         )
 
