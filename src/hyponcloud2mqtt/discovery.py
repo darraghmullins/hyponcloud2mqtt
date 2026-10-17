@@ -1,3 +1,4 @@
+
 """Home Assistant Discovery module."""
 
 from __future__ import annotations
@@ -55,7 +56,7 @@ SENSORS: dict[str, SensorAttribute] = {
     },
 
     "total_generation": {
-        "name": "Total Energy",
+        "name": "Total AC Energy",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total_increasing",
@@ -63,7 +64,7 @@ SENSORS: dict[str, SensorAttribute] = {
     },
 
     "month_generation": {
-        "name": "Month Energy",
+        "name": "Month AC Energy",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total_increasing",
@@ -71,7 +72,7 @@ SENSORS: dict[str, SensorAttribute] = {
     },
 
     "today_generation": {
-        "name": "Today Energy",
+        "name": "Today AC Energy",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total_increasing",
@@ -79,7 +80,7 @@ SENSORS: dict[str, SensorAttribute] = {
     },
 
     "year_generation": {
-        "name": "Year Energy",
+        "name": "Year AC Energy",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total_increasing",
@@ -130,7 +131,7 @@ SENSORS: dict[str, SensorAttribute] = {
     },
 
     "power_pv": {
-        "name": "Solar Power Generation",
+        "name": "Solar Power",
         "unit": "W",
         "device_class": "power",
         "state_class": "measurement",
@@ -170,7 +171,7 @@ SENSORS: dict[str, SensorAttribute] = {
     # =========================================================
 
     "e_today": {
-        "name": "Solar Energy Today",
+        "name": "AC Energy Out Today",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total",
@@ -178,7 +179,7 @@ SENSORS: dict[str, SensorAttribute] = {
     },
 
     "e_month": {
-        "name": "Solar Energy This Month",
+        "name": "AC Energy Out This Month",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total",
@@ -186,7 +187,7 @@ SENSORS: dict[str, SensorAttribute] = {
     },
 
     "e_year": {
-        "name": "Solar Energy This Year",
+        "name": "AC Energy Out This Year",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total",
@@ -194,7 +195,7 @@ SENSORS: dict[str, SensorAttribute] = {
     },
 
     "e_total": {
-        "name": "Solar Energy Lifetime",
+        "name": "AC Energy Out Lifetime",
         "unit": "kWh",
         "device_class": "energy",
         "state_class": "total_increasing",
@@ -205,75 +206,75 @@ SENSORS: dict[str, SensorAttribute] = {
     # ENERGY2 - DAILY ENERGY FLOW
     # =========================================================
 
-    "pvkwh": {
-        "name": "PV Energy Today",
+"pvkwh": {
+        "name": "PV Energy This Year",
         "unit": "kWh",
         "device_class": "energy",
-        "state_class": "total",
+        "state_class": "total_increasing",
         "display_precision": 2,
     },
 
     "load": {
-        "name": "Energy Consumption Today",
+        "name": "Energy Consumption This Year",
         "unit": "kWh",
         "device_class": "energy",
-        "state_class": "total",
+        "state_class": "total_increasing",
         "display_precision": 2,
     },
 
     "load_from_pv": {
-        "name": "Load from PV Today",
+        "name": "Load from PV This Year",
         "unit": "kWh",
         "device_class": "energy",
-        "state_class": "total",
+        "state_class": "total_increasing",
         "display_precision": 2,
     },
 
     "load_from_bat": {
-        "name": "Load from Battery Today",
+        "name": "Load from Battery This Year",
         "unit": "kWh",
         "device_class": "energy",
-        "state_class": "total",
+        "state_class": "total_increasing",
         "display_precision": 2,
     },
 
     "load_from_grid": {
-        "name": "Load from Grid Today",
+        "name": "Load from Grid This Year",
         "unit": "kWh",
         "device_class": "energy",
-        "state_class": "total",
+        "state_class": "total_increasing",
         "display_precision": 2,
     },
 
     "pv_to_load": {
-        "name": "PV to Load Today",
+        "name": "PV to Load This Year",
         "unit": "kWh",
         "device_class": "energy",
-        "state_class": "total",
+        "state_class": "total_increasing",
         "display_precision": 2,
     },
 
     "pv_to_bat": {
-        "name": "PV to Battery Today",
+        "name": "PV to Battery This Year",
         "unit": "kWh",
         "device_class": "energy",
-        "state_class": "total",
+        "state_class": "total_increasing",
         "display_precision": 2,
     },
 
     "pv_to_grid": {
-        "name": "PV to Grid Today",
+        "name": "PV to Grid This Year",
         "unit": "kWh",
         "device_class": "energy",
-        "state_class": "total",
+        "state_class": "total_increasing",
         "display_precision": 2,
     },
 
     "kwhac": {
-        "name": "AC Energy Today",
+        "name": "AC Energy This Year",
         "unit": "kWh",
         "device_class": "energy",
-        "state_class": "total",
+        "state_class": "total_increasing",
         "display_precision": 2,
     },
 
